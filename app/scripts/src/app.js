@@ -6,14 +6,14 @@ import {SearchForm, SearchList} from './dom';
 
 const FORM_SELECTOR = '[data-search="search-form"]';
 const INPUT_SELECTOR = '[data-search="search-input"]';
-const LIST_SELECTOR = '[data-chat="message-list"]';
+const LIST_SELECTOR = '[data-chat="article-list"]';
 
 class NooslyApp {
 	constructor() {
 		this.searchForm = new SearchForm(FORM_SELECTOR, INPUT_SELECTOR);
 		this.searchList = new SearchList(LIST_SELECTOR);
-
-		console.log('Welcome to Noosly!');
+		
+		console.log('Welcome to Noozly!');
 
 		socket.init('ws://localhost:3001');
 		socket.registerOpenHandler(() => {
@@ -22,8 +22,13 @@ class NooslyApp {
 				socket.sendMessage(data);
 			});
 		});
+
 		socket.registerMessageHandler((data) => {
 			console.log(data);
+			// let newsArticle = new NewsArticle(data);
+			// console.log(newsArticle);
+			// console.log(newsArticle.serialize());
+			this.searchList.drawArticle(data);
 		});
 	}
 }

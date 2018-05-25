@@ -20,7 +20,7 @@ function registerOpenHandler(handlerFunction) {
 	 */
 
 	socket.onopen = () => {
-		console.log('open');
+		console.log('Connection successful...');
 		handlerFunction();
 	};
 }
@@ -32,7 +32,6 @@ function registerOpenHandler(handlerFunction) {
 
 function registerMessageHandler(handlerFunction) {
 	socket.onmessage = (event) => {
-		console.log('message', event.data);
 		let data = JSON.parse(event.data);
 		handlerFunction(data);
 	}

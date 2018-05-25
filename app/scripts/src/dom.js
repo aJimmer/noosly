@@ -16,7 +16,6 @@ export class SearchForm {
 	constructor(formSel, inputSel) {
 		this.$form = $(formSel);
 		this.$input = $(inputSel);
-		console.log('selectors: ', formSel, inputSel);
 	}
 
 	init(submitCallback) {
@@ -58,6 +57,44 @@ export class SearchList {
       		'class': 'article-row'
     	});
     	
+    	let $article = $('<div>', {
+    		'class': 'row'
+    	});
+
+    	let $image = $('<div>', {
+    		'class': 'col-md-3'
+    	});
+
+    	let $title_desc = $('<div>', {
+    		'class': 'col-md-7'
+    	});
+
+    	$image.append($('<img>', {
+    		'src': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/200px-Noto_Emoji_KitKat_263a.svg.png'
+    	}));
+
+    	$title_desc.append($('<h3>', {
+      		'class': 'article-title',
+      		text: t
+		}));
+    	
+    	$title_desc.append($('<p>', {
+      		'class': 'article-desc',
+      		text: d
+		}));
+
+    	$title_desc.append($('<a>', {
+      		'class': 'btn btn-primary btn-sm',
+      		'href': u,
+      		'target': "_blank",
+      		text: 'Read Article',	
+		}));
+
+    	$article.append($image);
+    	$article.append($title_desc);
+    	$articleRow.append($article);
+    	$("#search-list").append($articleRow);
+    	$articleRow.get(0).scrollIntoView();
 	}
 }
 
